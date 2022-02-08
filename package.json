@@ -1,0 +1,27 @@
+{
+  "name": "jest-another-rpg",
+  "version": "1.0.0",
+  "description": "a rpg played using  the command line",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lssdavies/jest-another-RPG.git"
+  },
+  "keywords": [
+    "comman",
+    "line",
+    "rpg"
+  ],
+  "author": "lssdavies",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lssdavies/jest-another-RPG/issues"
+  },
+  "homepage": "https://github.com/lssdavies/jest-another-RPG#readme",
+  "devDependencies": {
+    "jest": "^27.5.0"
+  }
+}
