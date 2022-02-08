@@ -1,7 +1,14 @@
 //Importing  poition
 const Potion = require("../lib/Potion");
 
-/*Test function that takes 2 args i.e a descriptive string of the expected result and a call back arrow function*/
+///*Test function that takes 2 args i.e a descriptive string of the expected result and a call back arrow function*/
+test("creates a health potion object", () => {
+  const potion = new Potion("health");
+
+  expect(potion.name).toBe("health");
+  expect(potion.value).toEqual(expect.any(Number));
+});
+
 test("creates a random potion object", () => {
   //The new keyword creates an empty object using the constructor function Potion() and assigns it to this and then returns this
   const potion = new Potion();
