@@ -5,6 +5,8 @@ const Potion = require("../lib/Potion");
 jest.mock("../lib/Potion");
 console.log(new Potion());
 
+/*we create a new Player instance in every test even though we could choose to use the same one in all of our tests, but this might lead to unintended consequences. Now that our tests affect the Player object's property values, if we used the same object every time, we would no longer be testing properties and methods in isolation.*/
+
 test("creates a player object", () => {
   //The new keyword creates an empty object using the constructor function Player() and assigns it to this and then returns this
   const player = new Player("Dave");
@@ -71,4 +73,34 @@ test("subtracts from player's health", () => {
   player.reduceHealth(99999);
 
   expect(player.health).toBe(0);
+});
+
+//the getAttackValue get the player's attack value
+test("gets player's attack value", () => {
+  const player = new Player("Dave");
+  player.strength = 10;
+
+  expect(player.getAttackValue()).toBeGreaterThanOrEqual(5);
+  expect(player.getAttackValue()).toBeLessThanOrEqual(15);
+});
+
+/*As in previous methods, we need to modify properties on the Player object to test whether or not addPotion worked. In this case, we keep track of the old count so that we can ensure that adding a potion to our inventory actually increases the length of the player.inventory array.For the test we are the mock potion data imported on lines 4 & 5*/
+test("adds a potion to the inventory", () => {
+  const player = new Player("Dave");
+  const oldCount = player.inventory.length;
+
+  player.addPotion(new Potion());
+
+  expect(player.inventory.length).toBeGreaterThan(oldCount);
+});
+
+/*the usePotion method removes a potion from the players inventory when a player uses it*/
+test("uses a potion from inventory", () => {
+  const player = new Player("Dave");
+  player.inventory = [new Potion(), new Potion(), new Potion()];
+  const oldCount = player.inventory.length;
+
+  player.usePotion(1);
+
+  expect(player.inventory.length).toBeLessThan(oldCount);
 });
